@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.PresidentesListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name ="contenido">
+                <h2>#{str.PresidentesListTitle}</h2>
+                <p:fieldset legend="#{str.legendPresidenteForm}">
+                    <h:form> 
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.namePresidentePrompt}"
+                                         value="#{presidenteBean.presidente.nombrePresidente}"></p:inputText>
+                                         <p:inputText placeholder="#{str.namePresidentePrompt}"
+                                         value="#{presidenteBean.presidente.apellidoPresidente}"></p:inputText>
+                                         <p:inputText placeholder="#{str.agePresidentPrompt}"
+                                         value="#{presidenteBean.presidente.edad}"></p:inputText>
+                            <p:selectOneMenu value="#{presidenteBean.presidente.pais.idPaisHeader}">
+                                <f:selectItems value="#{presidenteBean.presidente}" var="d"
+                                               itemLabel="#{d.nombre}" itemValue="#{d.idPais}"></f:selectItems>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"
+                                         action="#{presidenteBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}"
+                                         action="#{presidenteBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}"
+                                         action="#{presidenteBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

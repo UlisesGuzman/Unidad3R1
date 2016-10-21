@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.PresidentesListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.PresidentesListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{presidenteBean.iniciar()}"></p:commandButton>                          
+                </h:form>
+                <p:dataTable value="#{presidenteBean.presidentes}" var="d">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}"
+                                             action="#{presidenteBean.editar(d)}"></p:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.idPresidenteHeader}">
+                        <p:outputLabel value="#{d.idPresidente}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.namePresidentePrompt}">
+                        <p:outputLabel value="#{d.nombrePresidente}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.apePresidentPrompt}">
+                        <p:outputLabel value="#{d.apellidoPresidente}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.agePresidentPrompt}">
+                         <p:outputLabel value="#{d.edad}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.PaisNamePrompt}">
+                        <p:outputLabel value="#{d.pais.nombre}"></p:outputLabel>
+                    </p:column>
+                    
+                    
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
